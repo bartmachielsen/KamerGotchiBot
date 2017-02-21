@@ -87,3 +87,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+
+.idea/
+gotchi_details.json
+*.json
