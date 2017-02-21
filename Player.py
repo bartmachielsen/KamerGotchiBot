@@ -61,5 +61,6 @@ if __name__ == '__main__':
                 time.sleep(wait_time)
 
             bar_change = bar_objects[random.randint(0, len(bar_objects)-1)]
-            post_data = Webparser.post('https://api.kamergotchi.nl/game/care', json.dumps({'bar': bar_change}), playerdetails)
-            print("changed " + bar_change + " to score --> " + get_score(post_data))
+            post_data = Webparser.post('https://api.kamergotchi.nl/game/care',
+                                       json.dumps({'bar': bar_change}), player_details)
+            print("added " + bar_change + " to score --> " + str(get_score(post_data)))
