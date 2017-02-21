@@ -8,14 +8,17 @@ player_details = {'x-player-token': '', 'Content-Type': 'application/json', 'Use
 gotchi_file = "gotchi_details.json"
 bar_objects = ['food', 'attention', 'knowledge']
 
+
 def load_gotchi_details():
+    """ For loading gotchi credentials like x-player-token from file """
     try:
         return json.loads(open(gotchi_file).read())['user-token']
     except:
         return None
 
+
 def get_score(json_data):
-    print(json_data)
+    """Method for getting score out of string"""
     json_conv = json.loads(json_data)
     if 'game' in json_conv:
         if 'score' in json_conv['game']:
@@ -24,10 +27,13 @@ def get_score(json_data):
 
 
 def get_care_left(json_data):
+    """Method for checking if there is any care left in the server"""
     return json.loads(json_data)['game']['careLeft']
 
 
 def get_care_reset(json_data):
+    """Method for getting date when carecounter is reset, until this is done no updates can be made.
+        Returns current date when could not parse date from string (midnight)"""
     date = datetime.now()
     try:
         time_data = json.loads(json_data)['game']['careReset'].split('T')[1].replace("Z", "").split('.')[0].split(':')
