@@ -1,7 +1,15 @@
 import requests
 
+
 def post(address, content, params):
-    return requests.post(address, data=content, headers=params).text
+    try:
+        return requests.post(address, data=content, headers=params).text
+    except:
+        return None
+
 
 def get(address, params):
-    return requests.get(address, headers=params).text
+    try:
+        return requests.get(address, headers=params).text
+    except:
+        return None

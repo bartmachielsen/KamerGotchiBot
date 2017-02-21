@@ -19,17 +19,22 @@ def load_gotchi_details():
 
 def get_score(json_data):
     """Method for getting score out of string"""
-    json_conv = json.loads(json_data)
-    if 'game' in json_conv:
-        if 'score' in json_conv['game']:
-            return json.loads(json_data)['game']['score']
+    try:
+        json_conv = json.loads(json_data)
+        if 'game' in json_conv:
+            if 'score' in json_conv['game']:
+                return json.loads(json_data)['game']['score']
+    except:
+        pass
     return "error"
 
 
 def get_care_left(json_data):
     """Method for checking if there is any care left in the server"""
-    return json.loads(json_data)['game']['careLeft']
-
+    try:
+        return json.loads(json_data)['game']['careLeft']
+    except:
+        return 10
 
 def get_care_reset(json_data):
     """Method for getting date when carecounter is reset, until this is done no updates can be made.
